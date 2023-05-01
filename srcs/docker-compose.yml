@@ -1,0 +1,11 @@
+services:
+  nginx:
+    image: nginx
+    build:
+      context:  requirements/nginx/
+    ports: 
+      - "81:81"
+  mariadb:
+    image: mariadb
+    build:
+      context:  requirements/mariadb/

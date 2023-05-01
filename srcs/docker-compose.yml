@@ -5,7 +5,16 @@ services:
       context:  requirements/nginx/
     ports: 
       - "81:81"
+    restart: on-failure
   mariadb:
     image: mariadb
     build:
       context:  requirements/mariadb/
+    restart: on-failure
+  wordpress:
+    image: wordpress
+    restart: on-failure
+    depends_on:
+      - mariadb
+    build:
+      context: requirements/wordpress/

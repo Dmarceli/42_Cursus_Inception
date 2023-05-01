@@ -7,8 +7,10 @@ RUN apt-get update && \
         procps \
         nano
 
-COPY ./tools/makedb.sql /
-COPY ./conf/conf.sh /
+COPY ./conf/conf.sh .
+COPY ./tools/makedb.sql .
 COPY ./tools/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf 
+
 RUN chmod +777 conf.sh
+
 ENTRYPOINT [ "bash", "conf.sh" ]

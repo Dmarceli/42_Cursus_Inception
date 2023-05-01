@@ -10,6 +10,8 @@ sleep 2
 
 sleep 2
 
+echo "==========MariaDB started!=========="
+
 mysqld_safe
 
 

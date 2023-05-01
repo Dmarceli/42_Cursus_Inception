@@ -1,13 +1,30 @@
-FROM	debian:buster
+FROM debian:buster
 
-RUN		apt-get update
-RUN     apt install wget php php-fpm php-mysqli php-common net-tools vim -y
+RUN apt-get update && \
+    apt-get -y install  php \
+                        php-fpm\
+                        php-mysql \
+                        vim \
+                        wget
 
-#get WordPress
+# Install WordPress
 RUN wget https://wordpress.org/latest.tar.gz
 RUN tar -xzvf latest.tar.gz
 
-COPY ./conf/start.sh /
-RUN chmod +x start.sh
+RUN mkdir -p /var/www/wordpress && \
+        cp -r /wordpress/* /var/www/wordpress/
+
+#COPY ./conf/wp-config.php /var/www/html/wp-config.php
+
+#COPY ./conf/www.conf /etc/php/7.3/fpm/pool.d/www.conf
+#EXPOSE 9000
+
+RUN mkdir /run/php
+COPY ./conf/* .
+
+RUN chmod +777 start.sh
 
 ENTRYPOINT [ "bash", "start.sh" ]
+
+
+

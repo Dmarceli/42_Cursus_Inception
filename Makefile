@@ -19,3 +19,7 @@ status :
 	@sudo docker ps
 
 restart : down  up
+
+fclean : down clean
+
+re : fclean up

@@ -1,13 +1,13 @@
 volumes:
-  wordpress:
-    name: wordpress
+  wordpress_vol:
+    name: wordpress_vol
     driver: local
     driver_opts:
             device: /home/dani/Desktop/42_Cursus_Inception/srcs/requirements/wordpress
             o: bind
             type: none
-  mariadb:
-    name: mariadb
+  mariadb_vol:
+    name: mariadb_vol
     driver: local
     driver_opts:
             device: /home/dani/Desktop/42_Cursus_Inception/srcs/requirements/mariadb
@@ -47,6 +47,8 @@ services:
     depends_on:
       - wordpress
     image: nginx
+    volumes:
+      - wordpress_vol:/var/www/html/wordpress
     build:
       context: requirements/nginx/
     ports: 

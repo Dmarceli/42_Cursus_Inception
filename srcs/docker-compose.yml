@@ -1,10 +1,35 @@
+volumes:
+  wordpress:
+    name: wordpress
+    driver: local
+    driver_opts:
+            device: /home/dani/Desktop/42_Cursus_Inception/srcs/requirements/wordpress
+            o: bind
+            type: none
+  mariadb:
+    name: mariadb
+    driver: local
+    driver_opts:
+            device: /home/dani/Desktop/42_Cursus_Inception/srcs/requirements/mariadb
+            o: bind
+            type: none
+networks:
+  inception:
+    name: inception
+
 services:
   mariadb:
+    container_name: mariadb
     image: mariadb
     build:
-      context:  requirements/mariadb/
+      context: requirements/mariadb/
     restart: on-failure
+    networks:
+      - inception
+    env_file:
+      - .env  
   wordpress:
+    container_name: wordpress
     image: wordpress
     restart: on-failure
     depends_on:
@@ -13,12 +38,21 @@ services:
       context: requirements/wordpress/
     ports:
       - "9000:9000"
+    networks:
+      - inception
+    env_file:
+      - .env    
   nginx:
+    container_name: nginx
     depends_on:
       - wordpress
     image: nginx
     build:
-      context:  requirements/nginx/
+      context: requirements/nginx/
     ports: 
       - "443:443"
     restart: on-failure
+    networks:
+      - inception
+    env_file:
+      - .env 

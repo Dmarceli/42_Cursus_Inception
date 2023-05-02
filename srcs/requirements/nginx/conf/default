@@ -1,10 +1,10 @@
 server {
-        listen 443;
-        listen [::]:443;
+        listen 80;
+        listen [::]:80;
 
         server_name dmarceli.42.fr www.dmarceli.42.fr;
 
-        index index.php index.html index.htm;
+        index index.php;
 
         root /var/www/html/wordpress;
 

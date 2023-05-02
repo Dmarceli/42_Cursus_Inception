@@ -6,7 +6,7 @@ RUN		apt-get install -y nginx \
 
 RUN mkdir /etc/nginx/ssl
 
-COPY ./conf/nginx.conf /etc/nginx/conf.d
+COPY ./conf/default /etc/nginx/sites-available
 
 RUN mkdir -p /run/nginx
 

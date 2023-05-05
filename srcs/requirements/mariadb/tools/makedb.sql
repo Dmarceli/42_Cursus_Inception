@@ -6,6 +6,7 @@ GRANT ALL PRIVILEGES ON *.* TO 'teste'@'%' WITH GRANT OPTION;
 
 FLUSH PRIVILEGES;
 
+
 -- MySQL dump 10.19  Distrib 10.3.38-MariaDB, for debian-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: marydb
@@ -417,3 +418,4 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2023-05-04  1:49:40
+

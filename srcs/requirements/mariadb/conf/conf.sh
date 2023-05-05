@@ -1,12 +1,14 @@
 /etc/init.d/mysql start 
 
 sleep 2
+mysql  < makedb.sql 
 
-mysql < makedb.sql 
+sleep 2
+mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED BY 'MyN3wP4ssw0rd';"
 
 sleep 2
 
-/etc/init.d/mysql stop
+mysqladmin -u root -pMyN3wP4ssw0rd shutdown
 
 sleep 2
 

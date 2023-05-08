@@ -3,6 +3,10 @@
 /etc/init.d/mysql start
 sleep 2
 
+sed -i "s/SQL_USER/$db_user/g" makedb.sql
+sed -i "s/SQL_PWD/$db_pwd/g" makedb.sql
+sed -i "s/DB_NAME/$db_name/g" makedb.sql
+
 mysql < makedb.sql
 sleep 2
 
